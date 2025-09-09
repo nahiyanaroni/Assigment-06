@@ -5,13 +5,17 @@ const LoadCatagori = () => {
         .then(json => displayTrees(json));
 }
 
+const emtyClick=(id)=>{
+ 
+ LoadCard (`https://openapi.programming-hero.com/api/category/${id}`)
+ } 
 const displayTrees = (Trees) => {
 
     Trees.categories.forEach(tree => {
         const allCetagori = document.getElementById("catagori-button");
         const div = document.createElement("div");
         div.setAttribute("class", "w-full")
-        div.innerHTML = ` <button class="hover:bg-green-700 w-full rounded-md text-left">
+        div.innerHTML = ` <button onclick="emtyClick(${tree.id})" class="hover:bg-green-700 w-full rounded-md text-left">
                  ${tree.category_name}
                 </button>`;
         allCetagori.appendChild(div);
@@ -21,9 +25,9 @@ const displayTrees = (Trees) => {
 LoadCatagori();
 
 
-const LoadCard = () => {
-
-    fetch('https://openapi.programming-hero.com/api/plants')
+const LoadCard = (api) => {
+document.getElementById('card-item').innerHTML='';
+    fetch(api)
         .then(response => response.json())
         .then(json => displayCard(json));
 }
@@ -54,5 +58,5 @@ const displayCard = (Card) => {
     });
 
 }
-LoadCard();
+LoadCard('https://openapi.programming-hero.com/api/plants');
 
