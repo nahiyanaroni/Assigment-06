@@ -58,5 +58,6 @@ const displayCard = (Card) => {
     });
 
 }
+
 LoadCard('https://openapi.programming-hero.com/api/plants');
 
