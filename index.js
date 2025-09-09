@@ -39,7 +39,7 @@ const displayCard = (Card) => {
         const div = document.createElement("div");
         div.setAttribute("class", "bg-white rounded-3xl flex flex-col justify-center p-3 gap-4 ")
         div.innerHTML = ` <img src="${card.image}" class="rounded-3xl h-50" alt="" />
-                <h1 class="text-lg font-semibold">${card.name}</h1>
+                <h1  class="text-lg font-semibold Click-name">${card.name}</h1>
                 <p class="text-gray-600">
                   ${card.description}
                 </p>
@@ -49,13 +49,31 @@ const displayCard = (Card) => {
                   >
                    ${card.category}
                   </button>
-                  <h1 class="text-lg font-semibold">${card.price}</h1>
+                  <h1 class="text-lg font-semibold">৳${card.price}</h1>
                 </div>
                 <button class="bg-green-700 rounded-full h-10 text-white">
                   Add to Cart
                 </button>`;
         allCard.appendChild(div);
     });
+    
+    const treeNames = document.querySelectorAll(".Click-name");
+treeNames.forEach((el, index) => {
+    el.addEventListener("click", () => {
+        const cardData = Card.plants[index]; // Get the correct plant object
+
+        // Populate modal with dynamic content
+        document.getElementById("modal-name").innerText = cardData.name;
+        document.getElementById("modal-image").src = cardData.image;
+        document.getElementById("modal-category").innerText = cardData.category;
+        document.getElementById("modal-price").innerText = cardData.price;
+        document.getElementById("modal-description").innerText = cardData.description;
+
+        // Show the modal
+        document.getElementById("tree-modal").classList.remove("hidden");
+    });
+});
+
 
 }
 
